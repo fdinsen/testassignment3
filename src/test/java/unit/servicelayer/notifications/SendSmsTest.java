@@ -1,4 +1,4 @@
-package unit.servicelayer.booking;
+package unit.servicelayer.notifications;
 
 import datalayer.booking.BookingStorage;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,6 +9,7 @@ import servicelayer.booking.BookingService;
 import servicelayer.booking.BookingServiceException;
 import servicelayer.booking.BookingServiceImpl;
 import servicelayer.customer.CustomerServiceException;
+import servicelayer.notifications.SmsService;
 
 import java.sql.SQLException;
 import java.sql.Time;
@@ -19,18 +20,21 @@ import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("unit")
-public class CreateBookingSmsTest {
+public class SendSmsTest {
 
     // SUT (System Under Test)
     private BookingService bookingService;
 
     // DOC (Depended-on Component)
     private BookingStorage storageMock;
+    private SmsService notificationMock;
+
 
     @BeforeAll
     public void beforeAll(){
+        notificationMock = mock(SmsService.class);
         storageMock = mock(BookingStorage.class);
-        bookingService = new BookingServiceImpl(storageMock);
+        bookingService = new BookingServiceImpl(storageMock, notificationMock);
     }
 
     @Test
@@ -49,13 +53,9 @@ public class CreateBookingSmsTest {
         // Can be read like: verify that storageMock was called 1 time on the method
         //   'createCustomer' with an argument whose 'firstname' == firstName and
         //   whose 'lastname' == lastName
-        verify(storageMock, times(1))
-                .createBooking(
-                        argThat(x -> x.customerId == 0 &&
-                                x.employeeId == 0 &&
-                                x.date.equals(date) &&
-                                x.start.equals(start) &&
-                                x.end.equals(end)
+        verify(notificationMock, times(1))
+                .sendSms(
+                        argThat(x -> x.equals("12345678")
                         ));
     }
 }
