@@ -47,7 +47,7 @@ class CreateEmployeeTest extends ContainerizedDbIntegrationTest {
 
 
     @Test
-    public void mustSaveCustomerInDatabaseWhenCallingCreateCustomer() throws SQLException, ParseException {
+    public void mustSaveEmployeeInDatabaseWhenCallingCreateEmployee() throws SQLException, ParseException {
         // Arrange
         // Act
         employeeStorage.createEmployee(new EmployeeCreation("John","Carlssonn", new SimpleDateFormat("dd/MM/yyyy").parse("01/08/1996")));

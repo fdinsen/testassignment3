@@ -1,7 +1,6 @@
 package unit.servicelayer.booking;
 
 import datalayer.booking.BookingStorage;
-import datalayer.customer.CustomerStorage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,6 @@ import servicelayer.booking.BookingService;
 import servicelayer.booking.BookingServiceException;
 import servicelayer.booking.BookingServiceImpl;
 import servicelayer.customer.CustomerServiceException;
-import servicelayer.customer.CustomerServiceImpl;
 
 import java.sql.SQLException;
 import java.sql.Time;
@@ -21,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Tag("unit")
-public class CreateBookingTest {
+public class CreateBookingSmsTest {
 
     // SUT (System Under Test)
     private BookingService bookingService;

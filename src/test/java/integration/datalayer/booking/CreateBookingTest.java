@@ -73,7 +73,7 @@ class CreateBookingTest extends ContainerizedDbIntegrationTest {
     }
 
     @Test
-    public void mustSaveCustomerInDatabaseWhenCallingCreateBooking() throws SQLException, ParseException {
+    public void mustSaveBookingInDatabaseWhenCallingCreateBooking() throws SQLException, ParseException {
         // Arrange
         // Act
         bookingStorage.createBooking(new BookingCreation(customerId,employeeId, new SimpleDateFormat("dd/MM/yyyy").parse("01/08/1996"), new Time(0), new Time(0)));
